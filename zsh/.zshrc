@@ -117,12 +117,6 @@ else
    export EDITOR='vim'
 fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
 # Function to extract many archive types
 extract () {
     if [ -f $1 ] ; then
@@ -140,7 +134,7 @@ extract () {
            *.Z)         uncompress $1  ;;
            *.7z)        7z x $1        ;;
            *.jar)       jar xf $1      ;;
-           *)  echo 'Error: function extract defined in ".bashrc" does not recognise the archive: "$1"...' ;;
+           *)  echo 'Error: function extract defined in ".zshrc" does not recognise the archive: "$1"...' ;;
        esac
    else
        echo "'$1' is not a valid file!"
@@ -184,22 +178,23 @@ ztime () {
 #    ls -td $1/* | head -n 1
 #}
 
+# Format json file in place.
 inplace_format () {
     jq -M . "$1" > "$1.tmp" && mv "$1.tmp" "$1"
 }
 
-# session_type () {
-#     loginctl "$(loginctl | \grep $UID | awk '{print $1}')"
-# }
+# Recursively find the last modified file in a dir.
+lastmod() {
 
-
+    # find $1 -type f -exec stat --format '%Y :%y %n' "{}" \; | sort -nr | cut -d: -f2- | head
+    find $1 -type f -print0 | xargs -0 stat --format '%Y :%y %n' | sort -nr | cut -d: -f2- | head
+}
 
 ######################## ALIASES ###########################
 alias vi='vim'
 alias grep='grep --line-number --color=auto'
 alias rgrep='grep --line-number --color=auto -R'
-alias ps='ps -v'
-alias psu="ps -U $USER"
+alias psu="ps -v -U $USER"
 
 # List working directory (ls) conents shortcuts.
 # ls options:
@@ -210,7 +205,7 @@ alias ls='ls --color=always'
 alias ll='ls -lhF'            # Long list.
 alias la='ls -ahF'            # List w/ all info.
 alias lla='ls -lahF'          # Long list w/ all info.
-alias lt='ls -ltF'
+alias lt='ls -ltF'            # Time sorted long list.
 
 # Remove files (rm) or directories (rmr).
 alias rm='rm -i' # Remove but ask always ask first
@@ -225,7 +220,14 @@ alias callgrind='valgrind --tool=callgrind'
 alias ls_swap="ls -la $HOME/.local/share/nvim/swap"
 alias clean_swap="rm -f $HOME/.local/share/nvim/swap/*.swp"
 
-# JSON linter (python required)
+# JSON linter (python required).
 alias jsonf="$PYTHON -m json.tool"
+
+# Get list of all users.
+alias lsgroups='cut -d: -f1 /etc/group | sort'
+
+# List all users on the system.
+alias lsusers='cut -d: -f1 /etc/passwd | sort'
 #################### END OF ALIASES #######################
 
+source $HOME/.zshrc.local

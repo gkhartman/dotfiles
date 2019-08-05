@@ -1,5 +1,4 @@
 # Garret Hartman's .bashrc
-# Machine: Oxide (ThinkPad T460s)
 # Last updated: 5-3-18
 
 # Set vim keybinding on
