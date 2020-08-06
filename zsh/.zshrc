@@ -22,7 +22,7 @@ compinit
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="agnoster"
-ZSH_THEME="gnzh"
+ZSH_THEME="cypher"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -93,6 +93,7 @@ plugins=(
   virtualenv
   vi-mode
   ubuntu
+  poetry
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -102,10 +103,14 @@ source $ZSH/oh-my-zsh.sh
 # Add USER's local bin directories to PATH
 PATH="$PATH:$HOME/.local/bin"
 PATH="$PATH:$HOME/.pyenv/bin"
+PATH="$PATH:$HOME/.local/go/bin"
 export PATH
 
 # Add USER's local man directories to PATH
 export MANPATH="$HOME/.local/man:$MANPATH"
+
+# Set go's local env path
+export GOPATH="$HOME/.local/gopath"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -230,4 +235,4 @@ alias lsgroups='cut -d: -f1 /etc/group | sort'
 alias lsusers='cut -d: -f1 /etc/passwd | sort'
 #################### END OF ALIASES #######################
 
-source $HOME/.zshrc.local
+#source $HOME/.zshrc.local
