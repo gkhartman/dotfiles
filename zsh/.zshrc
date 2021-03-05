@@ -76,48 +76,22 @@ ZSH_CUSTOM=$HOME/.zsh_custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-# Set Go install directory 
+# Set Golang install directory.
 export GOPATH="$HOME/.local/gopath"
 
-<<<<<<< HEAD
-=======
-plugins=(
-  docker
-  colorize
-  git
-  man
-  pip
-  python
-  themes
-  tmux
-  virtualenv
-  vi-mode
-  ubuntu
-  poetry
-)
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-#
->>>>>>> 9fcaaa7fa0608ff52575769c28b3304e211145d6
-# Add USER's local bin directories to PATH
+# Add local bin directories to PATH.
+# Note: Export PATH before sourcing oh-my-zsh.sh, so
+#       plugins have access to full PATH at start up.
 PATH="$PATH:$HOME/.local/bin"
 PATH="$PATH:$HOME/.pyenv/bin"
 PATH="$PATH:$HOME/.local/go/bin"
-<<<<<<< HEAD
 PATH="$PATH:$GOPATH/bin"
-=======
->>>>>>> 9fcaaa7fa0608ff52575769c28b3304e211145d6
 export PATH
 
-# Add USER's local man directories to PATH
+# Add local man directories to PATH.
 export MANPATH="$HOME/.local/man:$MANPATH"
 
-# Set go's local env path
-export GOPATH="$HOME/.local/gopath"
-
-# You may need to manually set your language environment
+# Set language env.
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
@@ -127,7 +101,7 @@ else
    export EDITOR='vim'
 fi
 
-# Zsh Plugins
+# Zsh plugins.
 plugins=(
   docker
   colorize
@@ -139,12 +113,15 @@ plugins=(
   tmux
   virtualenv
   vi-mode
-  ubuntu
 )
 
+# Load omz.
 source $ZSH/oh-my-zsh.sh
 
-# Function to extract many archive types
+# Load zsh fzf fuzzy finder (if installed).
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Function to extract many archive types.
 extract () {
     if [ -f $1 ] ; then
         case $1 in 
@@ -212,13 +189,11 @@ inplace_format () {
 
 # Recursively find the last modified file in a dir.
 lastmod() {
-
     # find $1 -type f -exec stat --format '%Y :%y %n' "{}" \; | sort -nr | cut -d: -f2- | head
     find $1 -type f -print0 | xargs -0 stat --format '%Y :%y %n' | sort -nr | cut -d: -f2- | head
 }
 
 ######################## ALIASES ###########################
-alias vi='vim'
 alias grep='grep --line-number --color=auto'
 alias rgrep='grep --line-number --color=auto -R'
 alias psu="ps -v -U $USER"
@@ -238,7 +213,7 @@ alias lt='ls -ltF'            # Time sorted long list.
 alias rm='rm -i' # Remove but ask always ask first
 alias rmr='rm -ir' # Remove recursive
 
-# Valgrind shortcuts
+# Valgrind common command shortcuts.
 alias memgrind='valgrind -v --leak-check=full --show-possibly-lost=yes --undef-value-errors=no'
 alias valgrind='valgrind -v --leak-check=full --show-possibly-lost=yes --undef-value-errors=yes'
 alias callgrind='valgrind --tool=callgrind'
@@ -257,17 +232,14 @@ alias lsgroups='cut -d: -f1 /etc/group | sort'
 alias lsusers='cut -d: -f1 /etc/passwd | sort'
 alias dc='docker-compose'
 
-# Upgrade all pip packages
+# Upgrade all pip packages.
 #alias pipup="pip list --outdated --format=freeze | /bin/grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 
 # Show outdated pip packages.
 alias pipcheckup='pip list --outdated --format=freeze'
 #################### END OF ALIASES #######################
 
-<<<<<<< HEAD
-source $HOME/.zshrc.local
+# Source host specific .zshrc file if found.
+[ -f ~/.zshrc.local ] && source $HOME/.zshrc.local
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-=======
-#source $HOME/.zshrc.local
->>>>>>> 9fcaaa7fa0608ff52575769c28b3304e211145d6
+# END .zshrc
