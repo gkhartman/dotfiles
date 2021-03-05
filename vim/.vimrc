@@ -75,6 +75,7 @@ Plug 'rakr/vim-one'                       " One-dark vim color theme
 Plug 'vim-airline/vim-airline'            " Powerline-like light status line
 Plug 'vim-airline/vim-airline-themes'     " Status line themes
 Plug 'tomasr/molokai'                     " Molokai color theme
+Plug 'stephpy/vim-yaml'                   " YAML Syntax Support
 
 " Python mode plugin to enable python linters and PEP format checking.
 Plug 'python-mode/python-mode', { 'branch': 'develop' }
@@ -89,6 +90,9 @@ call plug#end()
 
 " Enable python interpreter.
 let g:pymode_python = 'python3'
+
+" Get pynvim python interpreter from virtualenv (machine specific).
+let g:python3_host_prog = '/home/ghartman/.virtualenvs/alert_review_console/bin/python3'
 
 " Language client config.
 set hidden

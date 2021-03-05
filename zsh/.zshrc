@@ -22,7 +22,7 @@ compinit
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="agnoster"
-ZSH_THEME="gnzh"
+ZSH_THEME="maran"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -77,10 +77,30 @@ ZSH_CUSTOM=$HOME/.zsh_custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-# Use local install of tmux instead of system.
-# Must be defined before loading OMZ tmux plugin.
-#alias tmux="$HOME/.local/bin/tmux"
+# Set Go install directory 
+export GOPATH="$HOME/.local/gopath"
 
+# Add USER's local bin directories to PATH
+PATH="$PATH:$HOME/.local/bin"
+PATH="$PATH:$HOME/.pyenv/bin"
+PATH="$PATH:$HOME/.local/go/bin"
+PATH="$PATH:$GOPATH/bin"
+export PATH
+
+# Add USER's local man directories to PATH
+export MANPATH="$HOME/.local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+else
+   export EDITOR='vim'
+fi
+
+# Zsh Plugins
 plugins=(
   docker
   colorize
@@ -96,26 +116,6 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-
-# User configuration
-#
-# Add USER's local bin directories to PATH
-PATH="$PATH:$HOME/.local/bin"
-PATH="$PATH:$HOME/.pyenv/bin"
-export PATH
-
-# Add USER's local man directories to PATH
-export MANPATH="$HOME/.local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
-else
-   export EDITOR='vim'
-fi
 
 # Function to extract many archive types
 extract () {
@@ -228,6 +228,15 @@ alias lsgroups='cut -d: -f1 /etc/group | sort'
 
 # List all users on the system.
 alias lsusers='cut -d: -f1 /etc/passwd | sort'
+alias dc='docker-compose'
+
+# Upgrade all pip packages
+#alias pipup="pip list --outdated --format=freeze | /bin/grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
+
+# Show outdated pip packages.
+alias pipcheckup='pip list --outdated --format=freeze'
 #################### END OF ALIASES #######################
 
 source $HOME/.zshrc.local
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -95,3 +95,5 @@ alias valgrind='valgrind -v --leak-check=full --show-possibly-lost=yes --undef-v
 alias callgrind='valgrind --tool=callgrind'
 #################### END OF ALIASES #######################
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
