@@ -66,8 +66,6 @@ Plug 'scrooloose/syntastic'               " Syntax checker
 Plug 'scrooloose/nerdtree'                " Dir tree explorer
 Plug 'octol/vim-cpp-enhanced-highlight'   " C++11/14 syntax highlighting support
 Plug 'juneedahamed/vc.vim'                " Repo tools
-Plug 'vim-scripts/Conque-GDB'             " Conque gdb debugger integration
-Plug 'tfnico/vim-gradle'                  " Gradle integration
 Plug 'othree/xml.vim'                     " Xml completion
 Plug 'SidOfc/mkdx'                        " Markdown Tools and Support
 Plug 'ervandew/supertab'                  " Jetbrains-like smart tab completion
@@ -76,6 +74,7 @@ Plug 'vim-airline/vim-airline'            " Powerline-like light status line
 Plug 'vim-airline/vim-airline-themes'     " Status line themes
 Plug 'tomasr/molokai'                     " Molokai color theme
 Plug 'stephpy/vim-yaml'                   " YAML Syntax Support
+Plug 'vimwiki/vimwiki'
 
 " Python mode plugin to enable python linters and PEP format checking.
 Plug 'python-mode/python-mode', { 'branch': 'develop' }

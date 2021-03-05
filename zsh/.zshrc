@@ -21,7 +21,6 @@ compinit
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="agnoster"
 ZSH_THEME="maran"
 
 # Set list of themes to load
@@ -80,15 +79,43 @@ ZSH_CUSTOM=$HOME/.zsh_custom
 # Set Go install directory 
 export GOPATH="$HOME/.local/gopath"
 
+<<<<<<< HEAD
+=======
+plugins=(
+  docker
+  colorize
+  git
+  man
+  pip
+  python
+  themes
+  tmux
+  virtualenv
+  vi-mode
+  ubuntu
+  poetry
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+#
+>>>>>>> 9fcaaa7fa0608ff52575769c28b3304e211145d6
 # Add USER's local bin directories to PATH
 PATH="$PATH:$HOME/.local/bin"
 PATH="$PATH:$HOME/.pyenv/bin"
 PATH="$PATH:$HOME/.local/go/bin"
+<<<<<<< HEAD
 PATH="$PATH:$GOPATH/bin"
+=======
+>>>>>>> 9fcaaa7fa0608ff52575769c28b3304e211145d6
 export PATH
 
 # Add USER's local man directories to PATH
 export MANPATH="$HOME/.local/man:$MANPATH"
+
+# Set go's local env path
+export GOPATH="$HOME/.local/gopath"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -237,6 +264,10 @@ alias dc='docker-compose'
 alias pipcheckup='pip list --outdated --format=freeze'
 #################### END OF ALIASES #######################
 
+<<<<<<< HEAD
 source $HOME/.zshrc.local
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+=======
+#source $HOME/.zshrc.local
+>>>>>>> 9fcaaa7fa0608ff52575769c28b3304e211145d6
