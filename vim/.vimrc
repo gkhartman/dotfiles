@@ -31,8 +31,8 @@ if(has("termguicolors"))
     set termguicolors
 endif
 
-" Set color schemes.
-set background=dark     " Either dark or light background.
+" Use color themes dark background.
+set background=dark
 
 """""""""""""""""""""""""GUI Settings""""""""""""""""""""""""""
 " Settings normally found in .gvimrc file.
@@ -45,9 +45,6 @@ if has('gui_running')
     " Remove print button from gvim toolbar.
     aunmenu ToolBar.Print
 
-    " Color scheme settings.
-    colorscheme elflord
-
 endif
 
 """"""""""""""""""""Neovim Only Settings"""""""""""""""""""
@@ -56,25 +53,27 @@ if !has('nvim')
 endif
 
 """"""""""""""""""""Plugin Related Settings""""""""""""""""""""
-" Enable formatting for vim plugin filetype
+" Enable formatting for vim plugin filetype.
 filetype plugin on
 filetype plugin indent on
 
-" Vim-Plug Plugin installer resources
+" Vim-Plug Plugin installer resources.
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/syntastic'               " Syntax checker
 Plug 'scrooloose/nerdtree'                " Dir tree explorer
-Plug 'octol/vim-cpp-enhanced-highlight'   " C++11/14 syntax highlighting support
 Plug 'juneedahamed/vc.vim'                " Repo tools
-Plug 'othree/xml.vim'                     " Xml completion
-Plug 'SidOfc/mkdx'                        " Markdown Tools and Support
+Plug 'othree/xml.vim'                     " XML code completion
+Plug 'sheerun/vim-polyglot'               " Improved syntax highlighting
 Plug 'ervandew/supertab'                  " Jetbrains-like smart tab completion
-Plug 'rakr/vim-one'                       " One-dark vim color theme
 Plug 'vim-airline/vim-airline'            " Powerline-like light status line
-Plug 'vim-airline/vim-airline-themes'     " Status line themes
-Plug 'tomasr/molokai'                     " Molokai color theme
+Plug 'vim-airline/vim-airline-themes'     " Airline status line themes
 Plug 'stephpy/vim-yaml'                   " YAML Syntax Support
 Plug 'vimwiki/vimwiki'
+Plug 'SidOfc/mkdx'                        " Markdown Tools and Support
+
+" Theme plugins.
+Plug 'tomasr/molokai'                     " Molokai color theme
+Plug 'sainnhe/sonokai'                    " Sonokai color themes from the Molokai family.
 
 " Python mode plugin to enable python linters and PEP format checking.
 Plug 'python-mode/python-mode', { 'branch': 'develop' }
@@ -120,6 +119,4 @@ let NERDTreeMapOpenInTab = '<ENTER>'
 " Map control F12 to generate ctags for c++ omnicomplete.
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
-" Syntax highlight settings.
-let c_no_curly_error = 1   " C++11/14 
-let python_highlight_all = 1 " Python
+colorscheme sonokai
