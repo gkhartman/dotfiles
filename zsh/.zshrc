@@ -21,7 +21,7 @@ compinit
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="maran"
+ZSH_THEME="lambda"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -237,9 +237,13 @@ alias dc='docker-compose'
 
 # Show outdated pip packages.
 alias pipcheckup='pip list --outdated --format=freeze'
+
+# Check network packet io counts.
+alias pktstat='ip -s link show'
 #################### END OF ALIASES #######################
 
-# Source host specific .zshrc file if found.
+# Source host specific .zshrc file if found. NOTE: Make sure this is at the end of .zshrc.
 [ -f ~/.zshrc.local ] && source $HOME/.zshrc.local
 
 # END .zshrc
+
